@@ -892,12 +892,12 @@
         // Insert Cookie
         function delCookie() {
             // document.cookie = 'COOKIE_NAME=; Max-Age=0; path=/; domain=' + location.host;
-            document.cookie = "askey=; Max-Age=0; SameSite=Strict; path=/";
+            document.cookie = "askey=; Max-Age=0; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         }
 
         // Insert Cookie
         function setCookie(data) {
-            document.cookie = "askey=" + JSON.stringify(data) + "; SameSite=Strict; path=/";
+            document.cookie = "askey=" + JSON.stringify(data) + "; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
         }
 
         // Set Input Value
