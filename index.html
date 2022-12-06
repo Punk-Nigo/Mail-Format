@@ -273,6 +273,7 @@
 
         /* Footer Start */
         footer {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -286,6 +287,33 @@
             margin-top: 3px;
             margin-left: 5px;
             width: 20px;
+        }
+
+        .file-download {
+            position: absolute;
+            right: 10px;
+        }
+
+        .file-download::before {
+            position: absolute;
+            content: "下載離線版";
+            text-align: center;
+            color: black;
+            top: -102px;
+            visibility: hidden;
+            opacity: 0;
+            background-color: rgb(252, 234, 212);
+            z-index: 99;
+        }
+
+        .file-download:hover:before {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .file-download img {
+            width: 16px;
+            height: 16px;
         }
 
         /* Footer End */
@@ -630,6 +658,10 @@
                 " alt="Wei1_Chen@askey.com.tw">
             </a>
         </address>
+        <a href="https://github.com/Punk-Nigo/Outlook/archive/refs/heads/main.zip" class="file-download" title="下載離線版">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHdSURBVEiJ7ZS/a1NBAMc/d3kvaZrXhmqoVZ4Rf3RpFdqqCA5SLOimi+JgEQTFP0As3aqDdlBwEIo46CCIiCAU/DFFhyJtFKou6qCWWmuTSJqkMYl9L3cO4lT7+gLNIPQLN933Pp877jioc0S81TzX3CgHolbgnwXX1aRy1Y9Tc4vHgFLNgp1bQ9Pvbu3YLMTypcRk0T19bXZyOuX01iqRkZCUXnCAg92Wcfv8pu74BvMF0A5s8zFiAIbfnfT1WMbdQbvr5mj2pVdPCGRQBMIzKTf/KfXroQEw8szh/pjrQyNMWB/zamgEjtb0HwiH7zz5ctQAeP1ZsPvEBfb0HWI+kyYz89XvwZakqhzepws8Hb2KFCJgAISkpq2SpUv+5JtbwKzMe0KSyQneJBOcObKFgFBL5uNApgMujZfa/tyBFpzsP4Vt23R27vKGT4zz6N4NEiO9RK3g8sV8lcdjczmjUFbBD1N5hi8P0WRZnnClFG9fPefBlb3e8L99rcvG7I9qy/WBHmItOSC34qKLx/fR2OD78WF0bF+XPbzfbvW9osZIpXHqBQeQ9YSvCdYE/4ugWHKU1qsP1mqRYkUpEd/YdLY5YgxGIyt/Xn4ipQg0mG74e3qhuFBWw6sC9cpvcr+cDW2eVUEAAAAASUVORK5CYII="
+                alt="askey file">
+        </a>
     </footer>
 
     <!-- Script -->
@@ -712,6 +744,8 @@
             // Replace Other Special Char
             var special = value.replace(/(\>\;\s)|(\>\s)|(\>\;)/g, "\>\;\n");
             inputMail.value = special;
+
+            console.log(special);
         }
 
         // Transer Data
@@ -775,7 +809,9 @@
         function delete_Value(index) {
             var inputVal = inputMail.value.split(";");
             inputVal.splice(index, 1);
+            inputVal[0] = inputVal[0].replace(/\n/g,"");
             var inputStr = inputVal.join(";");
+
             check_Mail_Format(inputStr);
 
             mail_arr.splice(index, 1);
@@ -920,7 +956,7 @@
                 if (Object.keys(json).length < 5) {
                     delCookie();
                     Alert_Show(false, "資料儲存異常!\n所有資料已被清除");
-                } else { 
+                } else {
                     setTimeout(function () {
                         document.getElementById("save-1").value = json["save-1"];
                         document.getElementById("save-1-val").value = json["save-1-val"];
