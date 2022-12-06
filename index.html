@@ -102,17 +102,17 @@
             border: 1px solid #ccc;
         }
 
-        .select-gp {
+        .li-gp {
             display: flex;
             justify-content: space-between;
             flex-flow: row wrap;
         }
 
-        .select-gp select {
+        .li-gp select {
             flex-basis: 65%;
         }
 
-        .select-gp button {
+        .li-gp button {
             cursor: pointer;
             width: 100%;
             height: 95%;
@@ -536,19 +536,19 @@
                 </div>
                 <div class="input-group">
                     <input type="text" class="save-name" id="save-1" name="save-1" value="儲存1" placeholder="名稱"
-                        maxlength="20" required>
+                        maxlength="20" autocomplete="off" required>
                     <input type="text" id="save-1-val" name="save-1-val" placeholder="無資料" readonly>
                     <button type="button" title="清除" data-id="save-1" title="清除" onclick="del_Save(this);">X</button>
                 </div>
                 <div class="input-group">
                     <input type="text" class="save-name" id="save-2" name="save-2" value="儲存2" placeholder="名稱"
-                        maxlength="20" required>
+                        maxlength="20" autocomplete="off" required>
                     <input type="text" id="save-2-val" name="save-2-val" placeholder="無資料" readonly>
                     <button type="button" title="清除" data-id="save-2" title="清除" onclick="del_Save(this);">X</button>
                 </div>
                 <div class="input-group">
                     <input type="text" class="save-name" id="save-3" name="save-3" value="儲存3" placeholder="名稱"
-                        maxlength="20" required>
+                        maxlength="20" autocomplete="off" required>
                     <input type="text" id="save-3-val" name="save-3-val" placeholder="無資料" readonly>
                     <button type="button" title="清除" data-id="save-3" title="清除" onclick="del_Save(this);">X</button>
                 </div>
@@ -570,14 +570,14 @@
                     <li title="轉換">轉換</li>
                     <li title="複製">複製</li>
                     <li title="寄件">寄件</li>
-                    <li class="select-gp">
+                    <li class="li-gp">
                         <select id="select-op">
                             <option value="">選擇</option>
                             <option value="save-1">儲存1</option>
                             <option value="save-2">儲存2</option>
                             <option value="save-3">儲存3</option>
                         </select>
-                        <button type="button" onclick="select_Save();">設定</button>
+                        <button type="button" title="設定" onclick="select_Save();">設定</button>
                     </li>
                 </ul>
             </div>
@@ -637,6 +637,8 @@
         var saveBtn = document.getElementById("save-btn");
         // Backdrop
         var backdrop = document.getElementsByClassName("backdrop")[0];
+        // Input Mail Default Value
+        var inputMail_def_Val = "";
         // User Name Data
         var uName_arr = [];
         // User Email Data
@@ -705,6 +707,7 @@
 
         // Transer Data
         function transer_Value() {
+            inputMail_def_Val = inputMail;
             // Reset Data
             mail_arr = [];
             uName_arr = [];
@@ -761,6 +764,11 @@
 
         // Delete Value
         function delete_Value(index) {
+            var inputVal = inputMail.value.split(";");
+            inputVal.splice(index, 1);
+            var inputStr = inputVal.join(";");
+            check_Mail_Format(inputStr);
+
             mail_arr.splice(index, 1);
             uName_arr.splice(index, 1);
             loop_Data(mail_arr);
@@ -817,7 +825,7 @@
                     str = str.replace(/\;/g, ":");
 
                     if (str.length > 1000) {
-                        Alert_Show(false, "無法儲存超過20筆資料");
+                        Alert_Show(false, "無法儲存\n<資料過大>");
                     } else {
                         document.getElementById(id + "-val").value = str;
                         // Change Background Color
