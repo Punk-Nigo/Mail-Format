@@ -875,21 +875,15 @@
                 var decodedCookie = decodeURIComponent(document.cookie);
                 var ca = decodedCookie.split(';');
 
-                console.log(ca.length);
-                if ((ca.length > 1) && (ca.length < 5)) {
-                    delCookie();
-                    Alert_Show(false, "資料儲存異常!\n所有資料已被清除");
-                } else {
-                    for (var i = 0; i < ca.length; i++) {
-                        var c = ca[i];
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
 
-                        while (c.charAt(0) == ' ') {
-                            c = c.substring(1);
-                        }
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
 
-                        if (c.indexOf(name) == 0) {
-                            return c.substring(name.length, c.length);
-                        }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
                     }
                 }
             } catch {
@@ -923,18 +917,21 @@
             if (data) {
                 var json = JSON.parse(data);
 
-                console.log(json);
-
-                setTimeout(function () {
-                    document.getElementById("save-1").value = json["save-1"];
-                    document.getElementById("save-1-val").value = json["save-1-val"];
-                    document.getElementById("save-2").value = json["save-2"];
-                    document.getElementById("save-2-val").value = json["save-2-val"];
-                    document.getElementById("save-3").value = json["save-3"];
-                    document.getElementById("save-3-val").value = json["save-3-val"];
-                    // Option Text
-                    option_Text();
-                }, 500);
+                if (Object.keys(json).length < 5) {
+                    delCookie();
+                    Alert_Show(false, "資料儲存異常!\n所有資料已被清除");
+                } else { 
+                    setTimeout(function () {
+                        document.getElementById("save-1").value = json["save-1"];
+                        document.getElementById("save-1-val").value = json["save-1-val"];
+                        document.getElementById("save-2").value = json["save-2"];
+                        document.getElementById("save-2-val").value = json["save-2-val"];
+                        document.getElementById("save-3").value = json["save-3"];
+                        document.getElementById("save-3-val").value = json["save-3-val"];
+                        // Option Text
+                        option_Text();
+                    }, 500);
+                }
             }
         }
 
