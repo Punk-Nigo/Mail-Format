@@ -660,8 +660,6 @@
 
         // Set Default Input Value
         set_Input_Val();
-        // Option Value
-        option_Value();
 
         // Show Alert
         function Alert_Show(status, val) {
@@ -815,6 +813,13 @@
             document.getElementById("data-count").innerHTML = "共" + num + "筆";
         }
 
+        // Select Option Text
+        function option_Text() {
+            for (var i = 1; i < selecteOP.options.length; i++) {
+                selecteOP.options[i].textContent = document.getElementById("save-" + i).value;
+            }
+        }
+
         // Select Value Save
         function select_Save() {
             var id = selecteOP.options[selecteOP.selectedIndex].value;
@@ -903,14 +908,9 @@
                     document.getElementById("save-2-val").value = json["save-2-val"];
                     document.getElementById("save-3").value = json["save-3"];
                     document.getElementById("save-3-val").value = json["save-3-val"];
+                    // Option Text
+                    option_Text();
                 }, 500);
-            }
-        }
-
-        // Select Option Value
-        function option_Value() {
-            for (var i = 1; i < selecteOP.options.length; i++) {
-                selecteOP[i].innerText = document.getElementById("save-" + i).value;
             }
         }
 
@@ -1018,9 +1018,7 @@
             hide_Form();
             setCookie(formProps);
 
-            setTimeout(function () {
-                window.location.reload();
-            }, 1000);
+            option_Text();
         });
     </script>
 </body>
