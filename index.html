@@ -877,7 +877,7 @@
                     }
                 }
             } catch {
-                setCookie("askey", "", -1);
+                delCookie();
 
                 Alert_Show(false, "資料儲存異常!\n等待刷新");
 
@@ -887,6 +887,12 @@
             }
 
             return null;
+        }
+
+        // Insert Cookie
+        function delCookie() {
+            // document.cookie = 'COOKIE_NAME=; Max-Age=0; path=/; domain=' + location.host;
+            document.cookie = "askey=; Max-Age=0; SameSite=Strict; path=/";
         }
 
         // Insert Cookie
