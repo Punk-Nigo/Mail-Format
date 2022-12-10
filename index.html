@@ -21,6 +21,7 @@
 
         *::-webkit-scrollbar {
             width: 5px;
+            height: 5px;
         }
 
         *::-webkit-scrollbar-track {
@@ -99,7 +100,7 @@
         }
 
         li:last-child {
-            background-color:white;
+            background-color: white;
         }
 
         li:nth-child(-n+4):hover {
@@ -163,11 +164,6 @@
             flex-basis: 20%;
         }
 
-        .col h3 {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
         /* Textarea Start */
         textarea {
             width: 100%;
@@ -183,7 +179,6 @@
         }
 
         /* Textarea End */
-
 
         /* Table Start */
         table {
@@ -303,7 +298,7 @@
             content: "下載離線版";
             text-align: center;
             color: black;
-            top: -102px;
+            top: -30px;
             visibility: hidden;
             opacity: 0;
             background-color: rgb(252, 234, 212);
@@ -370,11 +365,82 @@
             z-index: 999;
         }
 
+        #alert-confirm {
+            position: relative;
+            display: none;
+            padding: 25px 10px 10px 10px;
+            text-align: center;
+            width: 400px;
+            height: 280px;
+            margin-top: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #alert-confirm span {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 5px;
+            top: 5px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(230, 230, 230, 0.7);
+        }
+
+        #alert-confirm span::before {
+            cursor: pointer;
+            content: "X";
+            font-size: 18px;
+            margin-left: 5px;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+
+        #alert-confirm span:hover {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        #alert-confirm p {
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 18px;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+
+        #alert-confirm a {
+            position: absolute;
+            bottom: 10px;
+            left: 110px;
+            right: 110px;
+            margin: auto;
+            font-size: 16px;
+            letter-spacing: 10px;
+            padding: 10px;
+            border-radius: 5%;
+            color: rgb(120, 120, 120);
+            text-decoration: none;
+            background-color: rgba(230, 230, 230, 0.7);
+        }
+
+        #alert-confirm a:hover {
+            color: rgb(77, 77, 77);
+            border: 1px solid #ccc;
+        }
+
         .form {
             position: relative;
             padding: 10px;
-            width: 400px;
-            height: 300px;
+            width: 550px;
+            height: 400px;
             margin-top: 50px;
             margin-left: auto;
             margin-right: auto;
@@ -404,7 +470,7 @@
         }
 
         .form-footer button:hover {
-            border-color: rgba(120, 120, 120, 0.6);
+            border-color: rgba(120, 120, 120, 0.7);
         }
 
         .input-group {
@@ -435,9 +501,27 @@
             border-bottom-color: #ccc;
         }
 
-        .input-group label {
+        .input-group:nth-child(1) {
+            display: flex;
+            align-items: center;
+            padding-left: 40px;
+            justify-content: space-around;
             height: 25px;
-            font-weight: bold;
+            margin-bottom: 5px;
+            border-bottom: rgba(120, 120, 120, 0.7) 1px solid;
+        }
+
+        .input-group:nth-child(1) label {
+            margin-left: 22px;
+            width: 100px;
+        }
+
+        .input-group span {
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            color: brown;
             border-bottom: black 1px solid;
         }
 
@@ -512,8 +596,13 @@
 
             /* Form Start */
             .form {
-                width: 350px;
-                height: 260px;
+                width: 450px;
+                height: 360px;
+                overflow-x: auto;
+            }
+
+            .input-group:nth-child(1) label {
+                margin-left: 4px;
             }
 
             .form-footer {
@@ -542,6 +631,46 @@
             }
 
             /* Form End */
+
+            /* Alert Confirm Start */
+            #alert-confirm {
+                width: 330px;
+                height: 220px;
+            }
+
+            #alert-confirm h2 {
+                font-size: 18px !important;
+            }
+
+            #alert-confirm span {
+                right: 5px;
+                top: 5px;
+                width: 30px;
+                height: 30px;
+            }
+
+            #alert-confirm span::before {
+                font-size: 16px;
+            }
+
+            #alert-confirm p {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-size: 14px !important;
+                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            }
+
+            #alert-confirm a {
+                bottom: 10px;
+            }
+
+            #alert-confirm a:hover {
+                color: rgb(77, 77, 77);
+                border: 1px solid #ccc;
+            }
+
+            /* Alert Confirm End */
         }
 
         /* Media 861 End */
@@ -561,12 +690,24 @@
     <main>
         <!-- Alert -->
         <div id="alert">Loading...</div>
-        <!-- Form -->
+        <!-- Backdrop -->
         <div class="backdrop">
+            <!-- Alert cConfirm -->
+            <div id="alert-confirm">
+                <span title="關閉" onclick="hide_Form();"></span>
+                <h2>版本 1.2</h2>
+                <hr>
+                <p>
+                    *修改了儲存上限
+                </p>
+                <a href="https://github.com/Punk-Nigo/Outlook/archive/refs/heads/main.zip" onclick="hide_Form();" title="下載">下載</a>
+            </div>
+            <!-- Form -->
             <form class="form">
                 <div class="input-group">
                     <label>名稱</label>
                     <label>內容</label>
+                    <label>容量</label>
                 </div>
                 <div class="input-group">
                     <input type="text" class="save-name" id="save-1" name="save-1" value="儲存1" placeholder="名稱"
@@ -575,6 +716,7 @@
                         onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
                         oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" required>
                     <input type="text" id="save-1-val" name="save-1-val" placeholder="無資料" readonly>
+                    <span>0 kb</span>
                     <button type="button" title="清除" data-id="save-1" title="清除" onclick="del_Save(this);">X</button>
                 </div>
                 <div class="input-group">
@@ -584,6 +726,7 @@
                         onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
                         oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" required>
                     <input type="text" id="save-2-val" name="save-2-val" placeholder="無資料" readonly>
+                    <span>0 kb</span>
                     <button type="button" title="清除" data-id="save-2" title="清除" onclick="del_Save(this);">X</button>
                 </div>
                 <div class="input-group">
@@ -593,7 +736,28 @@
                         onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
                         oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" required>
                     <input type="text" id="save-3-val" name="save-3-val" placeholder="無資料" readonly>
+                    <span>0 kb</span>
                     <button type="button" title="清除" data-id="save-3" title="清除" onclick="del_Save(this);">X</button>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="save-name" id="save-4" name="save-4" value="儲存4" placeholder="名稱"
+                        maxlength="10" autocomplete="off"
+                        onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
+                        onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
+                        oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" required>
+                    <input type="text" id="save-4-val" name="save-4-val" placeholder="無資料" readonly>
+                    <span>0 kb</span>
+                    <button type="button" title="清除" data-id="save-4" title="清除" onclick="del_Save(this);">X</button>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="save-name" id="save-5" name="save-5" value="儲存5" placeholder="名稱"
+                        maxlength="10" autocomplete="off"
+                        onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
+                        onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"
+                        oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')" required>
+                    <input type="text" id="save-5-val" name="save-5-val" placeholder="無資料" readonly>
+                    <span>0 kb</span>
+                    <button type="button" title="清除" data-id="save-5" title="清除" onclick="del_Save(this);">X</button>
                 </div>
                 <div class="form-footer">
                     <button type="button" id="cancel-btn" title="取消">取消</button>
@@ -619,6 +783,8 @@
                             <option value="save-1">儲存1</option>
                             <option value="save-2">儲存2</option>
                             <option value="save-3">儲存3</option>
+                            <option value="save-4">儲存4</option>
+                            <option value="save-5">儲存5</option>
                         </select>
                         <button type="button" title="設定" onclick="select_Save();">設定</button>
                     </li>
@@ -662,7 +828,8 @@
                 " alt="Wei1_Chen@askey.com.tw">
             </a>
         </address>
-        <a href="https://github.com/Punk-Nigo/Outlook/archive/refs/heads/main.zip" class="file-download" title="下載離線版">
+        <a href="#" class="file-download" title="下載離線版">
+            <span>Rev 1.2</span>
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHdSURBVEiJ7ZS/a1NBAMc/d3kvaZrXhmqoVZ4Rf3RpFdqqCA5SLOimi+JgEQTFP0As3aqDdlBwEIo46CCIiCAU/DFFhyJtFKou6qCWWmuTSJqkMYl9L3cO4lT7+gLNIPQLN933Pp877jioc0S81TzX3CgHolbgnwXX1aRy1Y9Tc4vHgFLNgp1bQ9Pvbu3YLMTypcRk0T19bXZyOuX01iqRkZCUXnCAg92Wcfv8pu74BvMF0A5s8zFiAIbfnfT1WMbdQbvr5mj2pVdPCGRQBMIzKTf/KfXroQEw8szh/pjrQyNMWB/zamgEjtb0HwiH7zz5ctQAeP1ZsPvEBfb0HWI+kyYz89XvwZakqhzepws8Hb2KFCJgAISkpq2SpUv+5JtbwKzMe0KSyQneJBOcObKFgFBL5uNApgMujZfa/tyBFpzsP4Vt23R27vKGT4zz6N4NEiO9RK3g8sV8lcdjczmjUFbBD1N5hi8P0WRZnnClFG9fPefBlb3e8L99rcvG7I9qy/WBHmItOSC34qKLx/fR2OD78WF0bF+XPbzfbvW9osZIpXHqBQeQ9YSvCdYE/4ugWHKU1qsP1mqRYkUpEd/YdLY5YgxGIyt/Xn4ipQg0mG74e3qhuFBWw6sC9cpvcr+cDW2eVUEAAAAASUVORK5CYII="
                 alt="askey file">
         </a>
@@ -709,7 +876,7 @@
         set_Input_Val();
 
         // Show Alert
-        function Alert_Show(status, val) {
+        function alert_Show(status, val) {
             var class_ = status ? "show-success" : "show-fail";
             alertPanel.classList.add(class_);
             alertPanel.innerText = val;
@@ -722,6 +889,7 @@
         function clear_Value() {
             inputMail.value = "";
             outMail.value = "";
+            data_Count(0);
             mail_arr = [];
             btn_list[2].classList.add("didabled-btn");
             btn_list[3].classList.add("didabled-btn");
@@ -746,10 +914,8 @@
         // Check Mail Format
         function check_Mail_Format(value) {
             // Replace Other Special Char
-            var special = value.replace(/(\>\;\s)|(\>\s)|(\>\;)/g, "\>\;\n");
+            var special = value.replace(/(\>\;\s)|(\>\s)|(\>\;)|(\>\:)/g, "\>\;\n");
             inputMail.value = special;
-
-            console.log(special);
         }
 
         // Transer Data
@@ -778,11 +944,11 @@
                     btn_list[2].classList.remove("didabled-btn");
                     btn_list[3].classList.remove("didabled-btn");
                 } else {
-                    Alert_Show(false, "格式異常\n無法轉換");
+                    alert_Show(false, "格式異常\n無法轉換");
                 }
             } else {
                 // Show Alert
-                Alert_Show(false, "尚未輸入");
+                alert_Show(false, "尚未輸入");
                 // Buttons Style
                 btn_list[2].classList.add("didabled-btn");
                 btn_list[3].classList.add("didabled-btn");
@@ -806,14 +972,14 @@
             outMail.select();
             document.execCommand("copy");
             // Show Alert
-            Alert_Show(true, `複製成功! 共${+mail_arr.length}筆`);
+            alert_Show(true, `複製成功! 共${+mail_arr.length}筆`);
         }
 
         // Delete Value
         function delete_Value(index) {
             var inputVal = inputMail.value.split(";");
             inputVal.splice(index, 1);
-            inputVal[0] = inputVal[0].replace(/\n/g,"");
+            inputVal[0] = inputVal[0].replace(/\n/g, "");
             var inputStr = inputVal.join(";");
 
             check_Mail_Format(inputStr);
@@ -829,7 +995,7 @@
             btn_list[3].classList.add("didabled-btn");
 
             // Show Alert
-            Alert_Show(true, "5秒後自動開啟軟體");
+            alert_Show(true, "5秒後自動開啟軟體");
 
             setTimeout(function () {
                 location.href = "mailto:?cc=" + outMail.value;
@@ -837,7 +1003,7 @@
                 setTimeout(function () {
                     btn_list[3].textContent = "寄件";
                     btn_list[3].classList.remove("didabled-btn");
-                }, 5000);
+                }, 3000);
             }, 5000);
         }
 
@@ -876,18 +1042,46 @@
             var id = selecteOP.options[selecteOP.selectedIndex].value;
 
             if (id.length) {
-                if (inputMail.value.length > 10) {
-                    var str = inputMail.value.replace(/\n\,/g, "");
-                    str = str.replace(/\;/g, ":");
 
-                    if (str.length > 1000) {
-                        Alert_Show(false, "無法儲存\n<資料過大>");
-                    } else {
-                        document.getElementById(id + "-val").value = str;
+                if (inputMail.value.trim().length > 10) {
+                    // Replace Value
+                    var replace_Done = inputMail.value.replace(/(>\;+\n+)|(>;\n+)|(>;\n+\s+)|(>;\s+)/g, ">;");
+
+                    // Remove Duplicates
+                    var input_Array = replace_Done.split(";");
+                    input_Array = [...new Set(input_Array)];
+
+
+                    // var str = inputMail.value.replace(/\n\,/g, "");
+                    // str = str.replace(/\;/g, ":");
+                    // Cookie Size
+                    // if (str.length > 1000) {
+                    //     alert_Show(false, "無法儲存\n<資料過大>");
+                    // } else {
+                    //     document.getElementById(id + "-val").value = str;
+                    //     // Change Background Color
+                    //     document.getElementById(id + "-val").style.backgroundColor = "rgb(215, 250, 215)";
+                    //     show_Form();
+                    // }
+                    // var dataSize = outMail.value.split(";");
+
+
+                    if (input_Array.length < 50) {
+                        var input_String = input_Array.join(";");
+
+                        document.getElementById(id + "-val").value = input_String;
+
+                        var index = (Number(id.match(/[0-9]{1}/g)) - 1);
+                        document.querySelectorAll(".input-group > span")[index].textContent = string_Size(input_String);
+
                         // Change Background Color
                         document.getElementById(id + "-val").style.backgroundColor = "rgb(215, 250, 215)";
                         show_Form();
+                    } else {
+                        alert_Show(false, "單筆儲存最大50筆上限");
                     }
+                } else {
+                    alert_Show(false, "尚未轉換，輸出區無資料");
                 }
             } else {
                 show_Form();
@@ -896,9 +1090,13 @@
 
         // Delete Save
         function del_Save(event) {
-            var data = getCookie();
+            var data = getLocalStorae();
+            // var data = getCookie();
             var id = event.dataset.id;
             document.getElementById(id + "-val").value = "";
+
+            var index = (Number(id.match(/[0-9]{1}/g)) - 1);
+            document.querySelectorAll(".input-group > span")[index].textContent = "0 KB";
 
             if (data) {
                 var index = Number(id.split("-")[1]);
@@ -929,13 +1127,12 @@
             } catch {
                 delCookie();
 
-                Alert_Show(false, "資料儲存異常!\n等待刷新");
+                alert_Show(false, "資料儲存異常!\n等待刷新");
 
                 setTimeout(function () {
                     window.location.reload();
                 }, 3000);
             }
-
             return null;
         }
 
@@ -950,24 +1147,70 @@
             document.cookie = "askey=" + JSON.stringify(data) + "; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
         }
 
+        // Find LocalStroage
+        function getLocalStorae(data) {
+            if (localStorage.getItem("askey")) {
+                return localStorage.getItem("askey");
+            }
+            return null;
+        }
+
+        // Insert LocalStroage
+        function setLocalStorae(data) {
+            localStorage.setItem("askey", JSON.stringify(data));
+        }
+
+        // Chceck LocalStorage Total Size
+        function checkSize_LocalStorage() {
+            var _lsTotal = 0, _xLen, _x;
+
+            for (_x in localStorage) {
+                if (!localStorage.hasOwnProperty(_x)) {
+                    continue;
+                }
+                _xLen = ((localStorage[_x].length + _x.length) * 2);
+                _lsTotal += _xLen;
+                // console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB")
+            };
+
+            return (_lsTotal / 1024).toFixed(2);
+        }
+
+        // Check String Size
+        function string_Size(str) {
+            if (str.length) {
+                var bytes = new Blob([str]).size;
+                var k = 1024;
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+                var i = Math.floor(Math.log(bytes) / Math.log(k));
+                var result = `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
+                return result;
+            }
+            return '0 KB';
+        }
+
         // Set Input Value
         function set_Input_Val() {
-            var data = getCookie();
-
+            var data = getLocalStorae();
+            // var data = getCookie();
             if (data) {
                 var json = JSON.parse(data);
 
                 if (Object.keys(json).length < 5) {
                     delCookie();
-                    Alert_Show(false, "資料儲存異常!\n所有資料已被清除");
+                    alert_Show(false, "資料儲存異常!\n所有資料已被清除");
                 } else {
                     setTimeout(function () {
-                        document.getElementById("save-1").value = json["save-1"];
-                        document.getElementById("save-1-val").value = json["save-1-val"];
-                        document.getElementById("save-2").value = json["save-2"];
-                        document.getElementById("save-2-val").value = json["save-2-val"];
-                        document.getElementById("save-3").value = json["save-3"];
-                        document.getElementById("save-3-val").value = json["save-3-val"];
+                        for (var i = 1; i < selecteOP.options.length; i++) {
+                            var title = `save-${i}`;
+                            var value = `save-${i}-val`;
+                            var index = (i - 1);
+
+                            document.getElementById(title).value = json[title];
+                            document.getElementById(value).value = json[value];
+                            document.querySelectorAll(".input-group > span")[index].textContent = string_Size(json[value]);
+                        }
                         // Option Text
                         option_Text();
                     }, 500);
@@ -993,6 +1236,10 @@
             for (var i = 1; i <= 3; i++) {
                 document.getElementById("save-" + i + "-val").style.backgroundColor = "rgb(246, 246, 246)";
             }
+            setTimeout(function () {
+                document.getElementById("alert-confirm").style.display = "none";
+                document.getElementsByClassName("form")[0].style.display = "block";
+            }, 1000);
         }
 
         // Search Button
@@ -1030,7 +1277,7 @@
                 data_Count(mail_arr.length);
             } else {
                 // Show Alert
-                Alert_Show(false, "請輸入關鍵字");
+                alert_Show(false, "請輸入關鍵字");
             }
 
             searchBtn.classList.add("didabled-btn");
@@ -1077,9 +1324,17 @@
             var formProps = Object.fromEntries(formData);
 
             hide_Form();
-            setCookie(formProps);
+            setLocalStorae(formProps);
+            // setCookie(formProps);
 
             option_Text();
+        });
+
+        // Footer a Click
+        document.querySelector("footer > a").addEventListener("click", function () {
+            document.getElementsByClassName("form")[0].style.display = "none";
+            document.getElementById("alert-confirm").style.display = "block";
+            show_Form();
         });
     </script>
 </body>
